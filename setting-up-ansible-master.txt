@@ -5,7 +5,6 @@ sudo apt -y update && sudo apt -y install awscli
 aws configure
 
 #copy ssh key from s3 bucket to ansible-master
-aws s3 cp s3://my_bucket/my_folder/my_file.ext my_copied_file.ext
 aws s3 cp s3://nonoy-keys/nonoy-aws-key-west.pem nonoy-aws-key-west.pem
 
 #fix file permissions
@@ -32,3 +31,9 @@ ssh -i ~/ssh/ansible 172.31.12.191
 #install ansible
 sudo apt update
 sudo apt install ansible
+
+#test
+ansible all --key-file ~/.ssh/ansible -i inventory -m ping
+
+#after creation of ansible.cfg
+ansible all -m ping
