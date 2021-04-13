@@ -7,9 +7,19 @@
   - name: install updates
     tags: always
     apt:
-      upgrade: dist
       update_cache: yes
+    changed_when: false
     when: ansible_distribution == "Ubuntu"
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: add ssh key for simone
+    tags: always
+    authorized_key:
+      user: simone
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK4bvt4nLYT8Jsd9zKjfYcCmZtGHot4giEBQ2SdZcwAY ansible"
 
 - hosts: workstations
   become: true
@@ -39,7 +49,7 @@
         - apache2
         - libapache2-mod-php  
       state: latest
-      update_cache: yes
+      update_cache: yes 
 
   - name: copy defaul html file
     tags: apache
