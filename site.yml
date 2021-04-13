@@ -24,6 +24,15 @@
       state: latest
       update_cache: yes
 
+  - name: copy defaul html file
+    tags: apache
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
+
 - hosts: db_servers
   become: true
   tasks:
