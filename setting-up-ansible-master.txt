@@ -37,3 +37,10 @@ ansible all --key-file ~/.ssh/ansible -i inventory -m ping
 
 #after creation of ansible.cfg
 ansible all -m ping
+
+#elevated 
+ansible all -m apt -a name=vim-nox --become --ask-become-pass
+ansible all -m apt -a "upgrade=dist" --become --ask-become-pass
+
+#playbook cmd
+ansible-playbook --ask-become-pass install_apache.yml
