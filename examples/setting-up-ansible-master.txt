@@ -19,12 +19,15 @@ ssh -i "nonoy-aws-key-west.pem" ubuntu@172.31.12.191
 #keygen
 ssh-keygen -t ed25519 -C "ansible"
 
+#copy to aws s3 (one time)
 aws s3 cp /home/ubuntu/.ssh/ansible s3://nonoy-keys/ansible
 aws s3 cp /home/ubuntu/.ssh/ansible.pub s3://nonoy-keys/ansible.pub
 
-cat ~/.ssh/ansible.pub | ssh -i nonoy-aws-key-west.pem ubuntu@172.31.12.191 "cat - >> ~/.ssh/authorized_keys"
-cat ~/.ssh/ansible.pub | ssh -i nonoy-aws-key-west.pem ubuntu@172.31.10.209 "cat - >> ~/.ssh/authorized_keys"
-cat ~/.ssh/ansible.pub | ssh -i nonoy-aws-key-west.pem ubuntu@172.31.0.23 "cat - >> ~/.ssh/authorized_keys"
+#copy from aws s3
+aws s3 cp s3://nonoy-keys/ansible /home/ubuntu/.ssh/ansible
+aws s3 cp s3://nonoy-keys/ansible.pub /home/ubuntu/.ssh/ansible.pub
+
+cat ~/.ssh/ansible.pub | ssh -i nonoy-aws-key-west.pem ubuntu@172.31.8.157 "cat - >> ~/.ssh/authorized_keys"
 
 ssh -i ~/ssh/ansible 172.31.12.191
 
