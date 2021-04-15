@@ -1,7 +1,7 @@
 [web_servers]
 172.31.12.191
 
-[db_servers]
+[db_servers]	
 172.31.10.209
 
 [file_servers]
