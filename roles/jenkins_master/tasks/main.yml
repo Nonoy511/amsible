@@ -5,12 +5,6 @@
     state: latest
     update_cache: yes
 
-- name: Download Jenkins Key
-  get_url:
-    url: https://pkg.jenkins.io/debian/jenkins.io.key
-    dest: /home/ubuntu/jenkins.io.key
-    mode: 0644
-
 - name: Add Jenkins Key
   apt_key:
     url: https://pkg.jenkins.io/debian/jenkins.io.key
@@ -27,3 +21,9 @@
     name: jenkins
     state: present
     update_cache: true
+
+- name: Verify Jenkins is up and running
+  service:
+    name: jenkins
+    state: started
+    enabled: yes
