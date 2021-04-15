@@ -1,11 +1,2 @@
-[web_servers]
-172.31.12.191
-
-[db_servers]
-172.31.10.209
-
-[file_servers]
-172.31.0.23
-
-[workstations]
-172.31.0.23
+[jenkins_master]
+172.31.8.157
